@@ -17,7 +17,9 @@ class Network():
 
     def listenMessage(self, q):
         while True:
-            q.put(self.cssocket.recv(1024))
+            response = self.cssocket.recv(1024)
+            if response is not None:
+                q.append(response)
 
     def makeConn(self, remhost):
         self.cssocket.connect((remhost,self.chatport))

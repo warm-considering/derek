@@ -7,7 +7,7 @@ from asciimatics.exceptions import ResizeScreenError, NextScene, StopApplication
 import sys
 from user import user
 from network import Network
-from multiprocessing import Process, Queue
+from multiprocessing import Process
 
 curruser = user("NoUser")
 
@@ -76,7 +76,7 @@ class main(Frame):
         self.layout1.add_widget(self.sendbtn,1)
         self.fix()
 
-        self.mqueue = Queue()
+        self.mqueue = []
     
     def adduser(self):
         remhost = self.useradd.value
@@ -105,8 +105,8 @@ class main(Frame):
 
     def putmessage(self):
         while True:
-            if not self.mqueue.empty():
-                self.chatarea.value += self.mqueue.get()
+            if self.mqueue != []:
+                self.chatarea.value += self.mqueue.pop(0)
 
 
     @staticmethod
