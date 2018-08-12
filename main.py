@@ -90,7 +90,7 @@ class main(Frame):
         self.listenThread = Process(target=self.NetInt.createChatConnection)
         self.listenThread.daemon = True
         self.listenThread.start()
-        self.messageThread = Process(target=self.NetInt.listenMessage, args=(self.mqueue))
+        self.messageThread = Process(target=self.NetInt.listenMessage, args=(self.mqueue,))
         self.messageThread.daemon = True
         self.messageThread.start()
         self.putThread = Process(target=self.putmessage)
