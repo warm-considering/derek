@@ -87,12 +87,8 @@ class main(Frame):
         self.layout3.add_widget(self.namelabel,0)
         self.fix()
         self.NetInt = Network()
-        self.listenThread = Process(target=self.NetInt.createChatConnection)
-        self.listenThread.daemon = True
+        self.listenThread = Process(target=self.NetInt.createChatConnection)       
         self.listenThread.start()
-        self.messageThread = Process(target=self.NetInt.listenMessage, args=(self.mqueue,))
-        self.messageThread.daemon = True
-        self.messageThread.start()
         self.putThread = Process(target=self.putmessage)
         self.putThread.daemon = True
         self.putThread.start()
